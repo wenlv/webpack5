@@ -73,7 +73,12 @@ module.exports = {
             {
                 test: /\.(css|less)$/,
                 // use: ['style-loader', 'css-loader', 'less-loader'],
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+                use: [MiniCssExtractPlugin.loader, {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                    },
+                }, 'less-loader', 'postcss-loader'],
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,

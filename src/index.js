@@ -7,8 +7,12 @@ import imgSvg from './assets/webpack-logo.svg';
 import helloTxt from './assets/hello.txt';
 import jpgMap from './assets/qianfeng-sem.jpg';
 
-import './styles/index.css';
+import styles from './styles/index.css';
+import global from './styles/index.global.css';
 import './styles/index.less';
+
+console.log(styles)
+console.log(global)
 
 test();
 
@@ -23,7 +27,7 @@ document.body.appendChild(img2);
 
 const txtDiv = document.createElement('div');
 txtDiv.style.cssText = 'width:600px;height:300px;background:red';
-txtDiv.classList.add('block-img');
+txtDiv.classList.add(styles.blockImg);
 txtDiv.textContent = helloTxt;
 document.body.appendChild(txtDiv);
 
@@ -32,16 +36,17 @@ img3.style.cssText = 'width:600px;height:300px';
 img3.src = jpgMap;
 document.body.appendChild(img3);
 
-document.body.classList.add('hello');
+document.body.classList.add(styles.hello);
 
 const span = document.createElement('span');
-span.classList.add('icon');
+span.classList.add(styles.icon);
 span.innerHTML = '&#ex668;';
 document.body.appendChild(span);
 
 console.log(_lodash.join(['index', 'lodash', 'module'], ' '));
 
 const divLoad = document.createElement('div');
+divLoad.classList.add(global.btn);
 divLoad.innerHTML = '点击添加';
 
 divLoad.addEventListener('click', () => {

@@ -15,6 +15,6 @@
     color: blue;
 }
 
-.block-img {
+.blockImg {
     background: url('../assets//webpack-logo.svg') !important;
 }
