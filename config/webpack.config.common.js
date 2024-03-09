@@ -18,6 +18,16 @@ module.exports = {
         assetModuleFilename: 'images/[contenthash][ext]',
     },
 
+    resolve: {
+        alias: { "@": './src' },
+        extensions: ['.js', '.json', '.vue'],
+    },
+
+    externalsType: 'script',
+    externals: {
+        jquery: ['https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js', 'jQuery'],
+    },
+
     plugins: [
         new HtmlWebpckPlugin({
             template: './index.html',

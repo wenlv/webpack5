@@ -52,6 +52,6 @@ divLoad.addEventListener('click', () => {
     });
 });
 document.body.appendChild(divLoad);
-if (module.hot) {
-    module.hot.access('/', () => { });
-}
+// if (module.hot) {
+//     module.hot.access('/', () => { });
+// }

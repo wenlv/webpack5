@@ -20,7 +20,10 @@
             2,
             {
                 "commonjs": true,
-                "amd": true
+                "amd": true,
+                "ignore": [
+                    "jquery"
+                ]
             }
         ],
         "import/no-import-module-exports": 0

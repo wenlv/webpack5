@@ -43,7 +43,7 @@ axios.interceptors.response.use((response) => {
     return Promise.reject(response)
 }, (error) => {
     console.log("err------axios");
-    if (error.response.status) {
+    if (error?.response?.status) {
         //
         //
         return Promise.reject(error.response)
@@ -79,8 +79,9 @@ export function httpPost({
             transformRequest: [(_data) => {
                 let ret = ''
                 if (_data) {
-                    _data.entries((v, k) => {
-                        ret += `${encodeURIComponent(k)}=${encodeURIComponent(v)}&`
+                    const arr = Object.keys(_data);
+                    arr.forEach((v) => {
+                        ret += `${encodeURIComponent(v)}=${encodeURIComponent(_data[v])}&`
                     })
                 }
 
