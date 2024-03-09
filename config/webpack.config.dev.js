@@ -1,3 +1,5 @@
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
 module.exports = {
     output: {
         filename: "scripts/[name].js",
@@ -27,5 +29,9 @@ module.exports = {
         },
 
     },
+
+    plugins: [
+        new BundleAnalyzerPlugin(),
+    ],
 
 }
