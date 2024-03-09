@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack server -c ./config/webpack.config.js --env development",
     "build:dev": "webpack -c ./config/webpack.config.js --env development",
-    "build:prod": "webpack -c ./config/webpack.config.js --env production"
+    "build:prod": "webpack -c ./config/webpack.config.js --env production",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +32,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.29.1",
     "html-webpack-plugin": "^5.6.0",
+    "husky": "^9.0.11",
     "less-loader": "^12.2.0",
     "mini-css-extract-plugin": "^2.8.1",
     "style-loader": "^3.3.4",
