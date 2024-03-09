@@ -7,6 +7,9 @@ const requestWebWorker = (obj) => new Promise((resolve) => {
     work.onmessage = (event) => {
         console.log("work---msg");
         console.log(event);
+        // 主线程关闭weoker
+        work.terminate();
+
         resolve(event.data);
     };
 })

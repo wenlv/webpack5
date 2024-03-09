@@ -14,4 +14,6 @@ self.onmessage = async (event) => {
     self.postMessage({
         results,
     });
+    // 在子线程关闭worker
+    // self.close();
 }
