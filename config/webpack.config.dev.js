@@ -12,8 +12,8 @@ module.exports = {
         hot: true,
         liveReload: true,
         compress: true,
-        port: 3000,
-        host: '0.0.0.0',
+        // port: 3000,
+        // host: '0.0.0.0',
         headers: {
             'X-ACCESS-TOKEN': 'abc123',
         },

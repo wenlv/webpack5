@@ -14,7 +14,16 @@
         "no-console": 0,
         "indent": [
             "error",
-            4
-        ]
+            4,
+            8
+        ],
+        "import/no-unresolved": [
+            2,
+            {
+                "commonjs": true,
+                "amd": true
+            }
+        ],
+        "import/no-import-module-exports": 0
     }
 }

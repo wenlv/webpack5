@@ -1,6 +1,7 @@
-export default function add(x, y) {
-    return x + y;
-}
-export function reduce(x, y) {
-    return x - y;
+const add = (x, y) => x + y;
+const reduce = (x, y) => x - y;
+
+module.exports = {
+    add,
+    reduce,
 }
