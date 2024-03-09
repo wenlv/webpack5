@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import getHelloApi from './vuex/getHello';
+import { requestWebWorker } from './webWorker/requestWebWorker';
 
 export default function test() {
     console.log('test-11!!');
@@ -7,6 +8,20 @@ export default function test() {
 
     getHelloApi().then((res) => {
         console.log('getapi-res');
+        console.log(res);
+    })
+
+    requestWebWorker({
+        filePath: '/src/webWorker/work.js',
+        worker: [
+            { url: '/api/hello', data: { id: '0' } },
+            { url: '/api/hello1', data: { id: '1' } },
+            { url: '/api/hello2', data: { id: '2' } },
+            { url: '/api/hello3', data: { id: '3' } },
+            { url: '/api/hello4', data: { id: '4' } },
+        ],
+    }).then((res) => {
+        console.log('res---test--worker');
         console.log(res);
     })
 }

@@ -72,6 +72,9 @@ export default function httpGet({
 export function httpPost({
     url, data = {}, params = {}, responseType, headers,
 }) {
+    console.log('http---posrt');
+    console.log(url);
+    console.log(params);
     return new Promise((resolve, reject) => {
         axios({
             url,

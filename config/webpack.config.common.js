@@ -19,7 +19,7 @@ module.exports = {
     },
 
     resolve: {
-        alias: { "@": './src' },
+        alias: { "@": '/src' },
         extensions: ['.js', '.json', '.vue'],
     },
 
