@@ -8,12 +8,9 @@ dependencies:
   axios:
     specifier: ^1.6.7
     version: 1.6.7
-  lodash.cond:
-    specifier: ^4.2.0
-    version: 4.5.2
-  lodash.find:
-    specifier: ^4.2.0
-    version: 4.6.0
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   webpack:
     specifier: ^5.90.3
     version: 5.90.3(webpack-cli@5.1.4)
@@ -3945,17 +3942,9 @@ packages:
       p-locate: 6.0.0
     dev: true
 
-  /lodash.cond@4.5.2:
-    resolution: {integrity: sha512-RWjUhzGbzG/KfDwk+onqdXvrsNv47G9UCMJgSKalPTSqJQyxZhQophG9jgqLf+15TIbZ5a/yG2YKOWsH3dVy9A==}
-    dev: false
-
   /lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
     dev: true
-
-  /lodash.find@4.6.0:
-    resolution: {integrity: sha512-yaRZoAV3Xq28F1iafWN1+a0rflOej93l1DQUejs3SZ41h2O9UJBoS9aueGjPDgAl4B6tPC0NuuchLKaDQQ3Isg==}
-    dev: false
 
   /lodash.memoize@4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
@@ -3971,7 +3960,6 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}

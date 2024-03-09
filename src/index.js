@@ -1,4 +1,4 @@
-// import _lodash from 'lodash';
+import _lodash from 'lodash';
 
 import test from './test';
 
@@ -39,7 +39,7 @@ span.classList.add('icon');
 span.innerHTML = '&#ex668;';
 document.body.appendChild(span);
 
-// console.log(_lodash.join(['index', 'index', 'module'], ' '));
+console.log(_lodash.join(['index', 'lodash', 'module'], ' '));
 
 const divLoad = document.createElement('div');
 divLoad.innerHTML = '点击添加';
