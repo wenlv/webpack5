@@ -5,6 +5,7 @@ export default function test() {
 
     getHelloApi().then((res) => {
         console.log('getapi-res');
+
         console.log(res);
     })
 }
