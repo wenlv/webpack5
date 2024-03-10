@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpckPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const EslintWebpackPlugin = require('eslint-webpack-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 // const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -55,22 +56,23 @@ module.exports = {
             // chunks: ['index'],
             publicPath: 'http://localhost:8080/',
         }),
-        new HtmlWebpckPlugin({
-            title: "webpack5-demo1",
-            template: './index.html',
-            filename: 'chanel1/app.html',
-            inject: 'body',
-            chunks: ['index'],
-            publicPath: 'http://localhost:8080/',
-        }),
-        new HtmlWebpckPlugin({
-            title: "webpack5-demo2",
-            template: './index.html',
-            filename: 'chanel2/app.html',
-            inject: 'body',
-            chunks: ['another'],
-            publicPath: 'http://localhost:8080/',
-        }),
+        // 多页面
+        // new HtmlWebpckPlugin({
+        //     title: "webpack5-demo1",
+        //     template: './index.html',
+        //     filename: 'chanel1/app.html',
+        //     inject: 'body',
+        //     chunks: ['index'],
+        //     publicPath: 'http://localhost:8080/',
+        // }),
+        // new HtmlWebpckPlugin({
+        //     title: "webpack5-demo2",
+        //     template: './index.html',
+        //     filename: 'chanel2/app.html',
+        //     inject: 'body',
+        //     chunks: ['another'],
+        //     publicPath: 'http://localhost:8080/',
+        // }),
         new MiniCssExtractPlugin({
             filename: 'styles/[contenthash].css',
         }),
@@ -79,6 +81,10 @@ module.exports = {
         //     'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
         // })
         // new EslintWebpackPlugin(),
+        new WorkboxWebpackPlugin.GenerateSW({
+            clientsClaim: true, // 快速启用server workbox
+            skipWaiting: true, // 跳过等待
+        }),
     ],
 
     module: {

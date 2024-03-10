@@ -26,3 +26,25 @@ git 添加husky提交校验
 添加tree-shaking 及sideEffects
 1.在webpack.config.common.js中的optimization:{usedExports:true}开启tree-shaking(生效条件1.必须是esmodule 2.没有使用 3.package.json中的sideEffects为true或["*.css","*.global.js"])
 2.设置package.json中的sideEffects为true或数组["*.css","*.global.js"])
+
+
+workbox离线应用
+1.安装http-server  workbox-webpackplugin
+2.package.json的scripts中新增 {start:"http-server dist"}命令
+3.webpack.config.common.js中添加workbox-webpackplugin插件
+4.在index.js中添加如下代码：
+    if ("serviceWorker" in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+                console.log("registration-注册成功---");
+                console.log(registration);
+            }).catch((registrationError) => {
+                console.log("registrationError--注册失败--");
+                console.log(registrationError);
+            })
+        })
+    }
+5.npm run dev 先打包dist文件(任何修改都要先打包编译dist)
+6.执行 npm run start
+7.跑起来后查看是否有注册成功workbox(成功后停掉服务再查看页面是否可以继续访问)
+8. 打开 chrome://serviceworker-internals/  可以将关闭已经注册成功的离线服务
