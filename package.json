@@ -55,7 +55,8 @@
     "ts-loader": "^9.5.1",
     "typescript": "^5.4.2",
     "webpack-dev-server": "^5.0.2",
-    "webpack-merge": "^5.10.0"
+    "webpack-merge": "^5.10.0",
+    "webpack5-library": "^1.0.1"
   },
   "browserslist": [
     "> 1%",

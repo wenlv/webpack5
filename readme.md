@@ -48,3 +48,22 @@ workbox离线应用
 6.执行 npm run start
 7.跑起来后查看是否有注册成功workbox(成功后停掉服务再查看页面是否可以继续访问)
 8. 打开 chrome://serviceworker-internals/  可以将关闭已经注册成功的离线服务
+
+
+发布npm包
+一：发布npm前本地验证
+1.新建demo/index.html文件 引入dist中打包好的js文件 
+2.执行 npx http-server 开启服务 查看页面是否可以成功访问并打印包信息
+二：发布npm包到npm.js
+1. webpack.config.common.js中的output添加如下代码:
+{
+    library: {
+        name: 'webpackNumbers',
+        type: "umd"
+    },
+    globalObject: "globalThis"
+}
+2. 将package.json中的main改为“dist/mylib”即打包后的文件名
+3. npm config get registry  必须是npm官网地址npm.org.js(若非npm官网地址需要设置成官网地址)
+4. npm adduser 然后输入用户名 邮箱 密码
+5. npm publish
