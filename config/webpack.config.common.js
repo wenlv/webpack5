@@ -154,6 +154,10 @@ module.exports = {
                 test: require.resolve('../src/another.js'),
                 use: 'imports-loader?wrapper=window',
             },
+            {
+                test: require.resolve('../src/common/global.js'),
+                use: 'exports-loader?type=commonjs&exports=file,multiple|helpers.parse|parse,multiple|helpers.test|test',
+            },
         ],
     },
 
