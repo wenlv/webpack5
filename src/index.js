@@ -2,6 +2,7 @@ import _lodash from 'lodash';
 
 import test from './test';
 import { testTs } from './typescript/testTs'
+// import { testTreeShaking } from './sideEffectsTest.js'
 
 import imgSrc from './assets/img-1.png';
 import imgSvg from './assets/webpack-logo.svg';
@@ -11,6 +12,7 @@ import jpgMap from './assets/qianfeng-sem.jpg';
 import styles from './styles/index.css';
 import global from './styles/index.global.css';
 import './styles/index.less';
+import './styles/sideEffectTest.css'
 
 console.log(styles)
 console.log(global)

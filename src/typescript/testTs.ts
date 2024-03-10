@@ -1,4 +1,7 @@
 import _ from 'lodash';
+console.log('testTs---------------');
+console.log('testTs-----++----------');
+console.log('testTs---------------');
 
 const testTs = () => {
     const num: number = 12;

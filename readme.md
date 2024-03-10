@@ -22,3 +22,7 @@ git 添加husky提交校验
 2.webpack.config.common.js中的module新增module{test:/\.ts$/,use:"ts-loader",exclude:/node_modules/,}
 3.执行 npx  tsc --init 命令创建tsconfig.json文件
 4.将tsconfig.json文件中的 {rootDir:'./src',outDir:'./dist'} 
+
+添加tree-shaking 及sideEffects
+1.在webpack.config.common.js中的optimization:{usedExports:true}开启tree-shaking(生效条件1.必须是esmodule 2.没有使用 3.package.json中的sideEffects为true或["*.css","*.global.js"])
+2.设置package.json中的sideEffects为true或数组["*.css","*.global.js"])
