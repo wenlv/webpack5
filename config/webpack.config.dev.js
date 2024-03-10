@@ -27,6 +27,9 @@ module.exports = {
         client: {
             overlay: false,
         },
+        // devMiddleware: {
+        //     writeToDisk: true,//开启dev开发环境编译后实时打包dist
+        // },
 
     },
 
