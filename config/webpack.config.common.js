@@ -146,8 +146,8 @@ module.exports = {
                                 '@babel/preset-env',
                                 {
                                     targets: ["> 1%", "last 2 versions"],
-                                    useBuiltIns: "usage",
-                                    corejs: 3,
+                                    // useBuiltIns: "usage",
+                                    // corejs: 3,
                                 },
                             ],
                         ],
