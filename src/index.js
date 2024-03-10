@@ -1,4 +1,5 @@
 import _lodash from 'lodash';
+// import "@babel/polyfill";
 
 // import './sideEffects/serverWorkbox';// workbox离线服务
 import test from './test';
