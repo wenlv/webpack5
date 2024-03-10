@@ -149,6 +149,11 @@ module.exports = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
+            // 依赖文件的this指向window
+            {
+                test: require.resolve('../src/another.js'),
+                use: 'imports-loader?wrapper=window',
+            },
         ],
     },
 
