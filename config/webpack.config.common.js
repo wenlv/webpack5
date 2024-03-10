@@ -1,5 +1,5 @@
 const path = require('path');
-// import webpack from 'webpack';
+const webpack = require('webpack');
 const HtmlWebpckPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const EslintWebpackPlugin = require('eslint-webpack-plugin');
@@ -84,6 +84,10 @@ module.exports = {
         new WorkboxWebpackPlugin.GenerateSW({
             clientsClaim: true, // 快速启用server workbox
             skipWaiting: true, // 跳过等待
+        }),
+        // shimming 预置依赖
+        new webpack.ProvidePlugin({
+            _: 'lodash',
         }),
     ],
 

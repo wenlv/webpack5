@@ -1,6 +1,6 @@
 import _lodash from 'lodash';
 
-import './sideEffects/serverWorkbox';// workbox离线服务
+// import './sideEffects/serverWorkbox';// workbox离线服务
 import test from './test';
 import { testTs } from './typescript/testTs'
 // import { testTreeShaking } from './sideEffectsTest.js'

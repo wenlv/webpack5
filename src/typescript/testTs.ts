@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 console.log('testTs---------------');
 console.log('testTs-----++----------');
 console.log('testTs---------------');
@@ -8,7 +8,7 @@ const testTs = () => {
     console.log("num---testTs---");
     console.log(num);
     const tsModule = _.join(['ts', 'module'], ' ');
-    console.log(tsModule);
+    console.log("tsModule", tsModule);
 
 }
 
