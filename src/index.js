@@ -1,6 +1,7 @@
 import _lodash from 'lodash';
 
 import test from './test';
+import { testTs } from './typescript/testTs'
 
 import imgSrc from './assets/img-1.png';
 import imgSvg from './assets/webpack-logo.svg';
@@ -13,6 +14,7 @@ import './styles/index.less';
 
 console.log(styles)
 console.log(global)
+testTs();
 
 test();
 

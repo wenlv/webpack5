@@ -15,3 +15,10 @@ git 添加husky提交校验
 5.若pre-commit没有权限 需要执行 cd .husky 
 6.ls -la查看是否有权限
 7.执行此命令加权限：chmod +x .husky/pre-commit 
+
+
+添加ts
+1.pnpm i typescript ts-loader
+2.webpack.config.common.js中的module新增module{test:/\.ts$/,use:"ts-loader",exclude:/node_modules/,}
+3.执行 npx  tsc --init 命令创建tsconfig.json文件
+4.将tsconfig.json文件中的 {rootDir:'./src',outDir:'./dist'} 

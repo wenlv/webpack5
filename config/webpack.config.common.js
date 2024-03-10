@@ -20,7 +20,7 @@ module.exports = {
 
     resolve: {
         alias: { "@": '/src' },
-        extensions: ['.js', '.json', '.vue'],
+        extensions: ['.json', '.ts', '.js', '.vue'],
     },
 
     externalsType: 'script',
@@ -96,6 +96,11 @@ module.exports = {
                         ],
                     },
                 }],
+            },
+            {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
             },
         ],
     },
