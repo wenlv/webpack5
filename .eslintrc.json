@@ -27,6 +27,13 @@
             }
         ],
         "import/no-import-module-exports": 0,
-        "no-restricted-globals": "off"
+        "import/prefer-default-export": "off",
+        "no-restricted-globals": "off",
+        "eqeqeq": "off",
+        "no-plusplus": "off",
+        "no-unused-expressions": "off",
+        "class-methods-use-this": "off",
+        "no-new-symbol": "off",
+        "symbol-description": "off"
     }
 }

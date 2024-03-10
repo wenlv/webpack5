@@ -12,14 +12,15 @@ export default function test() {
     })
 
     requestWebWorker({
-        filePath: '/src/webWorker/work.js',
-        worker: [
+        workerList: [
             { url: '/api/hello', data: { id: '0' } },
             { url: '/api/hello1', data: { id: '1' } },
             { url: '/api/hello2', data: { id: '2' } },
             { url: '/api/hello3', data: { id: '3' } },
             { url: '/api/hello4', data: { id: '4' } },
         ],
+        isTerminate: true,
+        // isClose:true,
     }).then((res) => {
         console.log('res---test--worker');
         console.log(res);
