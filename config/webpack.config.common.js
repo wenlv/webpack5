@@ -12,6 +12,24 @@ module.exports = {
         another: './src/another.js',
     },
 
+    // entry: {
+    //     index: {
+    //         import: "./src/index.js",
+    //         dependOn: 'shared',
+    //         filename: "chanel1/[name].js",
+    //     },
+    //     another: {
+    //         import: "./src/another.js",
+    //         dependOn: "shared",
+    //         filename: "chanel2/[name].js",
+    //     },
+    //     // shared: 'lodash',
+    //     shared: {
+    //         import: "lodash",
+    //         filename: "common/[name].js",
+    //     },
+    // },
+
     output: {
         path: path.resolve(__dirname, '../dist'),
         clean: true,
@@ -30,9 +48,28 @@ module.exports = {
 
     plugins: [
         new HtmlWebpckPlugin({
+            title: "webpack5-demo",
             template: './index.html',
-            filename: 'app.html',
+            filename: 'chanel/app.html',
             inject: 'body',
+            // chunks: ['index'],
+            publicPath: 'http://localhost:8080/',
+        }),
+        new HtmlWebpckPlugin({
+            title: "webpack5-demo1",
+            template: './index.html',
+            filename: 'chanel1/app.html',
+            inject: 'body',
+            chunks: ['index'],
+            publicPath: 'http://localhost:8080/',
+        }),
+        new HtmlWebpckPlugin({
+            title: "webpack5-demo2",
+            template: './index.html',
+            filename: 'chanel2/app.html',
+            inject: 'body',
+            chunks: ['another'],
+            publicPath: 'http://localhost:8080/',
         }),
         new MiniCssExtractPlugin({
             filename: 'styles/[contenthash].css',
