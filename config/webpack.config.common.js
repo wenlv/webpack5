@@ -35,10 +35,10 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
         clean: true,
         assetModuleFilename: 'images/[contenthash][ext]',
-        library: {
-            name: "mylibrary",
-            type: "commonjs",
-        },
+        // library: {
+        //     name: "mylibrary",
+        //     type: "commonjs",
+        // },
     },
 
     resolve: {

@@ -1,4 +1,4 @@
-const requestWebWorker = (obj) => new Promise((resolve) => {
+export const requestWebWorker = (obj) => new Promise((resolve) => {
     const work = new Worker(new URL('./work.js', import.meta.url));
     console.log(new URL(obj.filePath, import.meta.url));
     console.log("work------");
@@ -13,7 +13,3 @@ const requestWebWorker = (obj) => new Promise((resolve) => {
         resolve(event.data);
     };
 })
-
-module.exports = {
-    requestWebWorker,
-}
