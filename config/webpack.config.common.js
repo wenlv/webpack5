@@ -143,6 +143,8 @@ module.exports = {
     },
 
     optimization: {
+        usedExports: true,
+        // sideEffects: false,
         splitChunks: {
             // chunks: 'all'
             cacheGroups: {
