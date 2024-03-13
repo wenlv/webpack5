@@ -9,8 +9,37 @@
 
 css有关loader
 pnpm i style-loader css-loader less-loader postcss-loader postcss-nested autoprefixer  -D
+一、css-loader 开启css模块
+  1.配置loader  {
+        test: /\.(css|less)$/,
+        use: [MiniCssExtractPlugin.loader, {
+            loader: 'css-loader',
+            options: {
+                modules: true,//开启css模块化(即将css中的class等转为hash)
+            },
+        }, ],
+    },
+2. 页面引用时需要当成对象引用(将html标签中的class等也转为hash)
+    2.1. import styles from './styles/index.css';
+    2.2. txtDiv.classList.add(styles.blockImg);
+
+二、安装完postcss-loader postcss-nested autoprefixer 后需要在根目录下手动新建postcss.config.js文件
+postcss.config.js文件内容如下:
+    module.exports = {
+        plugins: [
+            require('autoprefixer'),
+            require('postcss-nested'),
+        ],
+    }
+在package.json文件中新增约定浏览器版本的代码如下代码：
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
+
 css有关的plugin
 pnpm i mini-css-extract-plugin css-minimizer-webpack-plugin  -D
+
 
 js有关的loader
 pnpm i babel-loader @balel/core @babel/preset-env @babel/runtime @babel/plugin-transform-runtime   @babel/polyfill
