@@ -352,7 +352,7 @@ import("nav/Header")中的nav是home模块webpack.config.common.js中remotes.nav
   4.1减少resolve.modules,resolve.extensions,resolve.mainFiles,resolve.descriptionFiles中条目数量，因为他们会增加文件系统调用次数
   4.2若不使用symlinks(如：npm link 或yarn link)可以设置resolve.symlinks:false;
   4.3若使用自定义的resolve.plugin规则，并且没有指定context上下文，可以设置resolve.cacheWithContext:false;
-5.小即时快(smaller=faster)
+5.小即时快(smaller=faster) 使用dllPlugin
     减少编译结果的整体大小，以提高构建性能。尽量保持chunk体积小。
     使用数量更少、体积更小的library
     多页面应用中会用splitChunksPlugin,并开启async模式
