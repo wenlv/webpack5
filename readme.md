@@ -457,4 +457,84 @@ worker池 worker-pool(thread-loader可以将非常消耗资源的loader分流给
   使用dllPlugin为更改不频繁的额代码生成单独的编译结果。这可以提高编译速度，尽管增加了构建过程的复杂度
 10.worker 池
 
+
+开发环境提升构建性能：
+1.增量编译
+  使用webpack的watch mode(监听模式)。而不使用其他工具来watch文件和调用webpack。内置 watch mode 会记录时间戳并将此信息传递给compilation 来是缓存失效
+  在某些环境中，watch mode 会回退到poll mode(轮询模式)。监听许多那件会导致CPU大量负载。在这些情况下，可以使用watchOptions.poll来增加轮询的间隔时间。
+2.内存中编译
+ 以下几个工具通过在内存中(而不是写入磁盘)编译和serve资源来提高性能：
+    webpack-dev-server
+    webpack-hot-middleware
+    webpack-dev-middleware
+3.stats.toJson加速
+ webpack4默认使用stats.toJson()输出大量数据。除非在增量步骤中做必要统计，否则请避免获取stats对象的部分内容。
+ webpack-dev-server在v3.1.3以后的版本，包括一个重要的性能修复，即最小化每个增量构建步骤中，从stats对象获取的数据量。
+4.devTool
+ 需要注意的是不同的devtool设置，会导致性能差异
+ eval 具有最好的性能，但不能转译代码
+ 若可以接受稍差一点的map质量，可以使用cheap-source-map 变体配置来提高性能
+ 使用eval-source-map 变体配置进行增量编译
+ 在大多数情况下，最佳选择是 eval-cheap-module-source-map
+5.避免在生产环境才用到的工具
+  某些utiity,plugin和loader都只用在生产环境。例如，在开发环境下使用TarerPlugin来minify(压缩)和mangle(混淆破坏)代码是没有意义的。通常在开发环境下，应该排除以下这些工具:
+  TerserPlugin
+  [fullhash]/[chunkhash]/[contenthash]
+  AggressiveSplittingPlugin
+  AggressiveMergingPlugin
+  ModuleConcatenationPlugin
+6.最小化entry chunk
+  webpack只会在文件系统中输出已经更新的chunk。某些配置选项( HMR，output.chunkFileame的[name]/[chunkhash]/[contenthash],[fullhash]来说，除了对已经更新的chunk无效以外，对于entry chunk也无效)。
+  确保在生成entry chunk时，尽量减少其体积以提高性能。下面的配置为运行时代码创建了一个额外的chunk,所以他的生成代价较低。
+  module.exports={
+    optimization:{
+        runtimeChunk:true
+    },
+  }
+7.避免额外的优化步骤：
+  webpack通过执行额外的算法任务，来优化输出结果的体积和加载性能。这些优化使用于小型代码库，但是在大型代码库中却非常耗费性能：
+  module.exports={
+    optimization:{
+        removeAvailableModules:false,
+        removeEmptyChunks:false,
+        splitChunks:false,
+    },
+  }
+8.输出结果不携带路径信息
+ webpack会在输出的bundle中生成路径信息。然而在打包数千个模块的项目中，这会导致垃圾回收性能压力。在options.output.pathinfo设置中关闭
+ module.exports={
+    output:{
+        pathinfo:false,
+    },
+  }
+9.node.js版本8.9.10-9.11.1
+  node.jsv8.9.10-9.11.1中的es2015 Map和Set实现，存在性能回退。webpack大量的使用这些数据结构，因此这次回退也会影响编译时间。
+  之前和之后的node.js版本不受影响。
+10.typescript loader
+  可以为loader传入transpileOnly选项，以缩短会用ts-loader时的构建时间。使用此选项会关闭类型检查。若需要开启类型检查，请使用ForkTsCheckerWebpackPlugin。使用此插件会将检查过程移至单独的进程，可以加快Typescript的类型检查和Eslint插入的速度。
+  module.exports={
+    modules:{
+        rules:[
+            {
+                test:/\.jsx?$/,
+                use:[
+                    {
+                        loader:'ts-loader',
+                        options:{
+                            transpileOnly:true
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+  }
+
+
+生产环境提升构建性能
+1.不启用sourceMap
+  source map相当耗费资源，开发环境模式不要设置source map
+ 
+
+
   
