@@ -341,3 +341,33 @@ import("nav/Header")中的nav是home模块webpack.config.common.js中remotes.nav
         document.body.innerHTML += HomeList(5);
     })
     
+
+
+
+通用环境性能提升：
+1.webpack node升级到最新版本
+2.将loader应用于最少数量的必要模块
+3.引导(bootstrap) 每个额外的loader/plugin都有启动时间，尽量少的使用工具
+4.解析：
+  4.1减少resolve.modules,resolve.extensions,resolve.mainFiles,resolve.descriptionFiles中条目数量，因为他们会增加文件系统调用次数
+  4.2若不使用symlinks(如：npm link 或yarn link)可以设置resolve.symlinks:false;
+  4.3若使用自定义的resolve.plugin规则，并且没有指定context上下文，可以设置resolve.cacheWithContext:false;
+5.小即时快(smaller=faster)
+    减少编译结果的整体大小，以提高构建性能。尽量保持chunk体积小。
+    使用数量更少、体积更小的library
+    多页面应用中会用splitChunksPlugin,并开启async模式
+    移除未引用的代码
+    只编译当前正在开发的那些代码
+6.持久化缓存
+  在webpack配置中会用cache选项。使用package.json中的postinstall清楚缓存目录
+  将cache类型设置为内存或者文件系统。memory选项很简单，它告诉webpack在内存中存储缓存，不允许额外的配置。
+  module.exports={
+    cache:{
+        type:"memory"
+    }
+  }
+7.自定义plugin/loader
+  对他们进行概要分析，以免在此处引入性能问题
+8.progress plugin
+  将progressPlugin删除以缩短构建时间
+  
