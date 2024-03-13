@@ -53,6 +53,7 @@ pnpm i core-js -D
 2.webpack.config.common.js中的module新增module{test:/\.ts$/,use:"ts-loader",exclude:/node_modules/,}
 3.执行 npx  tsc --init 命令创建tsconfig.json文件
 4.将tsconfig.json文件中的 {rootDir:'./src',outDir:'./dist'} 
+5.需要登录http://typescriptlang.org/dt/search?search=  将下载对应的第三方依赖如 lodash 需要下载@type/lodash
 
 
 workbox离线应用
