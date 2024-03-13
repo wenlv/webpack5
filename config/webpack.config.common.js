@@ -49,6 +49,12 @@ module.exports = {
     externalsType: 'script',
     externals: {
         jquery: ['https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js', 'jQuery'],
+        // lodash: {
+        //     commonjs: "lodash",
+        //     commonjs2: 'lodash',
+        //     amd: 'lodash',
+        //     root: "_",
+        // },
     },
 
     plugins: [
