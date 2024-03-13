@@ -238,3 +238,37 @@ treeShaking
 非离线环境下的pwa  
 pnpm i http-server -D
 npx http-server dist
+
+
+shiming预置全局变量
+1. const webpack = require('webpack');
+2. plugins:[
+    new webpack.ProvidePlugin({
+        _:"lodash"
+    })
+]
+
+全局导入this   another.js中访问 this.alert()
+1. pnpm i imports-loader -D
+2. webpack.config.common.js中配置modules代码如下:
+  modules:{
+    rules:[
+        {
+            test: require.resolve('../src/another.js'),
+            use: 'imports-loader?wrapper=window',
+        }
+    ],
+  }
+
+
+全局导出 export (第三方模块不知道如何导出情况下使用)
+1.pnpm i exports-loader -D
+2.webpack.config.common.js中配置modules代码如下:
+  modules:{
+    rules:[
+        {
+            test: require.resolve('../src/common/global.js'),
+            use: 'exports-loader?type=commonjs&exports=file,multiple|helpers.parse|parse,multiple|helpers.test|test',
+        }
+    ],
+  }
