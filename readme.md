@@ -83,6 +83,57 @@ workbox离线应用
     }
 
 
+添加eslint
+1.pnpm i eslint -D
+2.创建.eslintrc.json文件
+ 2.1 npx eslint --init 
+ 2.2 选择 To check  syntax,find problems,and enforce code style 
+ 2.3 选择 javaScript modules(import/export)
+ 2.4 选择 none of these
+ 2.5 是否使用ts  选择 NO
+ 2.6 选择Browser
+ 2.7 选择 use a popular tyle guide
+ 2.8 选择 Airbnb:https://github.com/airbnb/javascript
+ 2.9 选择JSON
+3.在生成的.eslintrc.json的rules中配置
+   "rules": {
+        "semi": 0,
+        "quotes": 0,
+        "no-console": 0,
+        "indent": [
+            "error",
+            4
+        ],
+        "import/no-unresolved": "off",
+        "import/no-import-module-exports": 0,
+        "import/prefer-default-export": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-restricted-globals": "off",
+        "eqeqeq": "off",
+        "no-plusplus": "off",
+        "no-unused-expressions": "off",
+        "class-methods-use-this": "off",
+        "no-new-symbol": "off",
+        "symbol-description": "off",
+        "import/extensions": "off",
+        "no-unused-vars": "off",
+        "global-require": "off"
+    }
+4.运行eslint来检查错误
+  第一种方式: 直接运行 npx eslint ./src直接检查
+  第二种方式: 通过配置eslint-loader 来校验
+     pnpm i eslint-loader -D
+     在webpack.config.common.js中配置
+     modules:{
+        rules:[
+            {
+                test:/\.js$/,
+                use:['babel-loader','eslint-loader']
+            }
+        ]
+     }
+    
+  
 
 git 添加husky提交校验
 1.pnpm i husky -D
@@ -92,9 +143,6 @@ git 添加husky提交校验
 5.若pre-commit没有权限 需要执行 cd .husky 
 6.ls -la查看是否有权限
 7.执行此命令加权限：chmod +x .husky/pre-commit 
-
-
-添加eslint
 
 
 
