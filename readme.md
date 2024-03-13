@@ -6,6 +6,9 @@
 2. npm i webpack webpack-cli webpack-server webpack-merge html-webpack-plugin --save--dev
 3. 运行webpack
 4. webpack --stats detailed 查看打包详细信息
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
 
 css有关loader
 pnpm i style-loader css-loader less-loader postcss-loader postcss-nested autoprefixer  -D
@@ -199,3 +202,22 @@ git 添加husky提交校验
 3. npm config get registry  必须是npm官网地址npm.org.js(若非npm官网地址需要设置成官网地址)
 4. npm adduser 然后输入用户名 邮箱 密码
 5. npm publish
+
+
+多页面应用
+    new HtmlWebpckPlugin({
+        title: "webpack5-demo1",
+        template: './index.html',
+        filename: 'chanel1/app.html',
+        inject: 'body',
+        chunks: ['index'],//将本页面需要的模块打包在一起
+        publicPath: 'http://localhost:8080/',
+    }),
+    new HtmlWebpckPlugin({
+        title: "webpack5-demo2",
+        template: './index.html',
+        filename: 'chanel2/app.html',
+        inject: 'body',
+        chunks: ['another'],//将本页面需要的模块打包在一起
+        publicPath: 'http://localhost:8080/',
+    }),
