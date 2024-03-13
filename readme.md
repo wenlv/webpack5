@@ -340,6 +340,51 @@ import("nav/Header")中的nav是home模块webpack.config.common.js中remotes.nav
         document.body.appendChild(body);
         document.body.innerHTML += HomeList(5);
     })
+
+
+使用dll
+1.新增webpack.dll.config.js文件 内容入下:
+  const path = require('path');
+    const webpack = require('webpack');
+
+    module.exports = {
+        mode: 'development',
+        entry: {
+            jquery: ['jquery'],
+        },
+        output: {
+            filename: "[name].js",
+            path: path.resolve(__dirname, 'dll'),
+            library: "[name]_[hash]",
+        },
+        plugins: [
+            new webpack.DllPlugin({
+                name: "[name]_[hash]",
+                path: path.resolve(__dirname, "dll/mainfest.json"),
+            }),
+        ],
+    }
+2.package.json文件中新增如下：
+  "scripts": {
+    "dll": "webpack -c ./config/webpack.dll.config.js"
+  }
+3.执行 npm  run dll 然后生成dll文件夹包含mainfest.json及jquery.js文件
+4.在webpack.config.common.js文件中新增如下代码：
+    plugins: [
+        new webpack.DllReferencePlugin({
+            manifest: path.resolve(__dirname, './dll/mainfest.json'),
+        }),
+    ],
+5.pnpm i add-asset-htmk-webpack-plugin -D  
+6.在webpack.config.common.js文件中新增如下代码(将生成的jquery.js添加到打包好的文件中)：
+    const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
+    plugins: [
+        new AddAssetHtmlWebpackPlugin({
+            filePath: path.resolve(__dirname, './dll/jquery.js'),
+            publicPath: './',
+        }),
+    ],
+
     
 
 
@@ -352,7 +397,7 @@ import("nav/Header")中的nav是home模块webpack.config.common.js中remotes.nav
   4.1减少resolve.modules,resolve.extensions,resolve.mainFiles,resolve.descriptionFiles中条目数量，因为他们会增加文件系统调用次数
   4.2若不使用symlinks(如：npm link 或yarn link)可以设置resolve.symlinks:false;
   4.3若使用自定义的resolve.plugin规则，并且没有指定context上下文，可以设置resolve.cacheWithContext:false;
-5.小即时快(smaller=faster) 使用dllPlugin
+5.小即时快(smaller=faster)
     减少编译结果的整体大小，以提高构建性能。尽量保持chunk体积小。
     使用数量更少、体积更小的library
     多页面应用中会用splitChunksPlugin,并开启async模式
@@ -370,4 +415,7 @@ import("nav/Header")中的nav是home模块webpack.config.common.js中remotes.nav
   对他们进行概要分析，以免在此处引入性能问题
 8.progress plugin
   将progressPlugin删除以缩短构建时间
+9.dll
+  使用dllPlugin为更改不频繁的额代码生成单独的编译结果。这可以提高编译速度，尽管增加了构建过程的复杂度
+
   

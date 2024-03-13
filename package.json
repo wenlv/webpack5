@@ -13,7 +13,8 @@
     "dev": "webpack server -c ./config/webpack.config.js --env development",
     "build:dev": "webpack -c ./config/webpack.config.js --env development",
     "build:prod": "webpack -c ./config/webpack.config.js --env production",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dll": "webpack -c ./config/webpack.dll.config.js"
   },
   "keywords": [],
   "author": "",

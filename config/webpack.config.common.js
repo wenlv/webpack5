@@ -5,7 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
-const { ModuleFederationPlugin } = require('webpack').container;
+// const { ModuleFederationPlugin } = require('webpack').container;
+// const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 
 // const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -112,6 +113,14 @@ module.exports = {
         //         "./Header": "./src/Header.js", // 导出Header模块供其他外部使用 使用时需要用remotes[key]/exposes[key]组成
         //     },
         //     shared: {}, // 公共模块资源
+        // }),
+        // 添加DllReferencePlugin
+        // new webpack.DllReferencePlugin({
+        //     manifest: path.resolve(__dirname, './dll/mainfest.json'),
+        // }),
+        // new AddAssetHtmlWebpackPlugin({
+        //     filePath: path.resolve(__dirname, './dll/jquery.js'),
+        //     publicPath: './',
         // }),
     ],
 
