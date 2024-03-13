@@ -47,9 +47,8 @@ pnpm i mini-css-extract-plugin css-minimizer-webpack-plugin  -D
 js有关的loader
 pnpm i babel-loader @balel/core @babel/preset-env @babel/runtime @babel/plugin-transform-runtime   @babel/polyfill
 js有关的plugin
-pnpm i core-js terser-webpack-plugin -D
-js有关的其他
-pnpm i core-js -D
+pnpm i terser-webpack-plugin -D
+
 
 添加ts
 1.pnpm i typescript ts-loader -D
@@ -272,3 +271,35 @@ shiming预置全局变量
         }
     ],
   }
+
+
+修复损坏实现 polyfill(即便是现在浏览器也需要)
+1.方式一全局引入:
+  1.1pnpm i @babel/polyfill -D
+  1.2页面中引入 import @babel/polyfill
+2.方式二按需引入:
+  2.1pnpm i core-js -D
+  2.2配置webpack.config.common.js中的module代码如下：
+    {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [{
+            loader: 'babel-loader',
+            options: {
+                presets: [
+                    [
+                        '@babel/preset-env',
+                        {
+                            targets: ["> 1%", "last 2 versions"],
+                            useBuiltIns: "usage",
+                            corejs: 3,
+                        },
+                    ],
+                ],
+                plugins: [
+                    ['@babel/plugin-transform-runtime'],
+                ],
+            },
+        }],
+    },
+    
