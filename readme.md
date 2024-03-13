@@ -220,4 +220,17 @@ git 添加husky提交校验
         inject: 'body',
         chunks: ['another'],//将本页面需要的模块打包在一起
         publicPath: 'http://localhost:8080/',
-    }),
+    })
+
+
+treeShaking
+1.在webpack.config.common.js中添加如下代码:
+    optimization: {
+        usedExports: true,
+    }
+2.package.json中新增sideEffects(表示有副作用的文件是不可以直接删掉的 设置为true表示不能删除   false表示可以删除  数组表示除了数组中的文件其他都可以删除 )如下代码：
+    "sideEffects": [
+        "*.css",
+        "src/sideEffects/*"
+    ], 
+3.必须是esmodule即用import/export
