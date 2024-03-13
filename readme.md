@@ -234,3 +234,7 @@ treeShaking
         "src/sideEffects/*"
     ], 
 3.必须是esmodule即用import/export
+
+非离线环境下的pwa  
+pnpm i http-server -D
+npx http-server dist
