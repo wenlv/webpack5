@@ -302,4 +302,42 @@ shiming预置全局变量
             },
         }],
     },
+
+
+模块联邦 Module Federation
+1.  const { ModuleFederationPlugin } = require('webpack').container;
+2.nav模块   将Header模块导出供home模块使用，nav模块的webpack.config.common.js新增
+    plugins:[
+        new ModuleFederationPlugin({
+            name: 'nav', // 模块联邦名称
+            filename: "remoteEntry.js", // 远程模块联邦文件
+            remotes: {}, // 引入外部模板联邦的文件
+            exposes: { // 导出联邦模块
+                "./Header": "./src/Header.js", // 导出Header模块供其他外部使用 使用时需要用remotes[key]/exposes[key]组成
+            },
+            shared: {}, // 公共模块资源
+        }),
+    ]
+3.home模块引用外部nav的Header模块  home模块的webpack.config.common.js新增
+    plugins:[
+        new ModuleFederationPlugin({
+            name: 'home', // 模块联邦名称
+            filename: "remoteEntry.js", // 远程模块联邦文件
+            remotes: {
+                nav: "nav@http://localhost:8080/remoteEntry.js", // 键nav是自定义名称,值"nav@http://localhost:8080/remoteEntry.js"就是用nav ModuleFederationPlugin模块的 name+publicPath+filename组成
+            }, // 引入外部模板联邦的文件
+            exposes: {},
+            shared: {}, // 公共模块资源
+        }),
+    ]
+3.home模块页面中只能通过import("nav/Header").then()动态同步加载
+import("nav/Header")中的nav是home模块webpack.config.common.js中remotes.nav;Header是nav模块中exposes暴露出来的键"./Header"
+    import("nav/Header").then((Header) => {
+        <!-- 加载完成后做逻辑处理 -->
+        const body = document.createElement('div');
+        body.appendChild(Header.default());
+
+        document.body.appendChild(body);
+        document.body.innerHTML += HomeList(5);
+    })
     

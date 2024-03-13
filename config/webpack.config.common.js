@@ -5,6 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
+const { ModuleFederationPlugin } = require('webpack').container;
+
 // const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 module.exports = {
@@ -99,6 +101,18 @@ module.exports = {
         new webpack.ProvidePlugin({
             _: 'lodash',
         }),
+        // 模块联邦
+        // new ModuleFederationPlugin({
+        //     name: 'nav', // 模块联邦名称
+        //     filename: "remoteEntry.js", // 远程模块联邦文件
+        //     remotes: {
+        //         home: "home@http://localhost:8080/remoteEntry.js", // 就是用 name+publicPath+filename组成
+        //     }, // 引入外部模板联邦的文件
+        //     exposes: { // 导出联邦模块
+        //         "./Header": "./src/Header.js", // 导出Header模块供其他外部使用 使用时需要用remotes[key]/exposes[key]组成
+        //     },
+        //     shared: {}, // 公共模块资源
+        // }),
     ],
 
     module: {
