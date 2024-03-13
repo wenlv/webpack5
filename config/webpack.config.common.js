@@ -116,10 +116,10 @@ module.exports = {
         // }),
         // 添加DllReferencePlugin
         // new webpack.DllReferencePlugin({
-        //     manifest: path.resolve(__dirname, './dll/mainfest.json'),
+        //     manifest: path.resolve(__dirname, '../dll/mainfest.json'),
         // }),
         // new AddAssetHtmlWebpackPlugin({
-        //     filePath: path.resolve(__dirname, './dll/jquery.js'),
+        //     filePath: path.resolve(__dirname, '../dll/jquery.js'),
         //     publicPath: './',
         // }),
     ],
