@@ -153,12 +153,17 @@ module.exports = {
             {
                 test: /\.(css|less)$/,
                 // use: ['style-loader', 'css-loader', 'less-loader'],
-                use: [MiniCssExtractPlugin.loader, {
-                    loader: 'css-loader',
-                    options: {
-                        modules: true,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                        },
                     },
-                }, 'less-loader', 'postcss-loader'],
+                    'less-loader',
+                    'postcss-loader',
+                ],
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -167,24 +172,32 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            [
-                                '@babel/preset-env',
-                                {
-                                    targets: ["> 1%", "last 2 versions"],
-                                    // useBuiltIns: "usage",
-                                    // corejs: 3,
-                                },
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                [
+                                    '@babel/preset-env',
+                                    {
+                                        targets: ["> 1%", "last 2 versions"],
+                                        // useBuiltIns: "usage",
+                                        // corejs: 3,
+                                    },
+                                ],
                             ],
-                        ],
-                        plugins: [
-                            ['@babel/plugin-transform-runtime'],
-                        ],
+                            plugins: [
+                                ['@babel/plugin-transform-runtime'],
+                            ],
+                        },
                     },
-                }],
+                    {
+                        loader: "thread-loader",
+                        options: {
+                            workers: 2,
+                        },
+                    },
+                ],
             },
             {
                 test: /\.ts$/,

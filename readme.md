@@ -385,6 +385,44 @@ import("nav/Header")中的nav是home模块webpack.config.common.js中remotes.nav
         }),
     ],
 
+
+worker池 worker-pool(thread-loader可以将非常消耗资源的loader分流给一个worker pool)
+1.pnpm i thread-loader -D
+2.modules:{
+    rules:[
+        {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: [
+                {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            [
+                                '@babel/preset-env',
+                                {
+                                    targets: ["> 1%", "last 2 versions"],
+                                    // useBuiltIns: "usage",
+                                    // corejs: 3,
+                                },
+                            ],
+                        ],
+                        plugins: [
+                            ['@babel/plugin-transform-runtime'],
+                        ],
+                    },
+                },
+                {
+                    loader: "thread-loader",
+                    options: {
+                        workers: 2,
+                    },
+                },
+            ],
+        },
+    ]
+}
+
     
 
 
@@ -417,5 +455,6 @@ import("nav/Header")中的nav是home模块webpack.config.common.js中remotes.nav
   将progressPlugin删除以缩短构建时间
 9.dll
   使用dllPlugin为更改不频繁的额代码生成单独的编译结果。这可以提高编译速度，尽管增加了构建过程的复杂度
+10.worker 池
 
   
