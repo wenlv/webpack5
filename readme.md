@@ -278,6 +278,23 @@ git 添加husky提交校验
 1.在webpack.config.common.js中的optimization:{usedExports:true}开启tree-shaking(生效条件1.必须是esmodule 2.没有使用 3.package.json中的sideEffects为true或["*.css","*.global.js"])
 2.设置package.json中的sideEffects为true或数组["*.css","*.global.js"])
 
+添加别名及拓展名
+ resolve: {
+    alias: { "@": '/src' },
+    extensions: ['.json', '.ts', '.js', '.vue'],
+},
+
+外部资源引用类型
+externalsType: 'script',
+externals: {
+    jquery: ['https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.js', 'jQuery'],
+    // lodash: {
+    //     commonjs: "lodash",
+    //     commonjs2: 'lodash',
+    //     amd: 'lodash',
+    //     root: "_",
+    // },
+},
 
 
 treeShaking
