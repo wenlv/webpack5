@@ -421,15 +421,8 @@ externals: {
 ==============================================================================================================
 ==============================================================================================================
 
-添加tree-shaking 及sideEffects
-1.在webpack.config.common.js中的optimization:{usedExports:true}开启tree-shaking(生效条件1.必须是esmodule 2.没有使用 3.package.json中的sideEffects为true或["*.css","*.global.js"])
-2.设置package.json中的sideEffects为true或数组["*.css","*.global.js"])
-
-==============================================================================================================
-==============================================================================================================
-==============================================================================================================
-
-treeShaking
+添加tree-shaking  usedExports及sideEffects
+treeShaking (生效条件1.必须是esmodule 2.没有使用 3.package.json中的sideEffects为true或["*.css","*.global.js"]))
 1.在webpack.config.common.js中添加如下代码:
     optimization: {
         usedExports: true,
@@ -437,7 +430,8 @@ treeShaking
 2.package.json中新增sideEffects(表示有副作用的文件是不可以直接删掉的 设置为true表示不能删除   false表示可以删除  数组表示除了数组中的文件其他都可以删除 )如下代码：
     "sideEffects": [
         "*.css",
-        "src/sideEffects/*"
+        "src/sideEffects/*",
+        "*.global.js"
     ], 
 3.必须是esmodule即用import/export
 
