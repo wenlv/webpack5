@@ -273,10 +273,88 @@ git 添加husky提交校验
 
 
 
+entry: {
+    index: './src/index.js',
+    another: './src/another.js',
+},
 
-添加tree-shaking 及sideEffects
-1.在webpack.config.common.js中的optimization:{usedExports:true}开启tree-shaking(生效条件1.必须是esmodule 2.没有使用 3.package.json中的sideEffects为true或["*.css","*.global.js"])
-2.设置package.json中的sideEffects为true或数组["*.css","*.global.js"])
+// entry: {
+//     index: {
+//         import: "./src/index.js",
+//         dependOn: 'shared',
+//         filename: "chanel1/[name].js",
+//     },
+//     another: {
+//         import: "./src/another.js",
+//         dependOn: "shared",
+//         filename: "chanel2/[name].js",
+//     },
+//     // shared: 'lodash',
+//     shared: {
+//         import: "lodash",
+//         filename: "common/[name].js",
+//     },
+// },
+
+
+ devServer: {
+    static: "./dist",
+    hot: true,
+    liveReload: true,
+    compress: true,//gzip压缩
+    // port: 3000,
+    // host: '0.0.0.0',
+    headers: {
+        'X-ACCESS-TOKEN': 'abc123',
+    },
+    // proxy: [{
+    //     '/api': 'http://localhost:9000',
+    // }],
+    // https: true,
+    // historyApifallback: true,
+    client: {
+        overlay: false,
+    },
+    // devMiddleware: {
+    //     writeToDisk: true,//开启dev开发环境编译后实时打包dist
+    // },
+
+},
+
+
+module: {
+    rules: [
+        {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            type: 'asset/resource',
+        },
+        {
+            test: /\.png$/,
+            type: 'asset/resource',
+            generator: {
+                filename: 'images/img/[contenthash][ext]',
+            },
+        },
+        {
+            test: /\.svg$/,
+            type: 'asset/inline',
+        },
+        {
+            test: /\.txt$/,
+            type: 'asset/source',
+        },
+        {
+            test: /\.jpg$/,
+            type: 'asset',
+            parser: {
+                dataUrlCondition: {
+                    maxSize: 4 * 1024 * 1024,
+                },
+            },
+        },
+    ]
+}
+
 
 添加别名及拓展名
  resolve: {
@@ -297,6 +375,12 @@ externals: {
 },
 
 
+
+添加tree-shaking 及sideEffects
+1.在webpack.config.common.js中的optimization:{usedExports:true}开启tree-shaking(生效条件1.必须是esmodule 2.没有使用 3.package.json中的sideEffects为true或["*.css","*.global.js"])
+2.设置package.json中的sideEffects为true或数组["*.css","*.global.js"])
+
+
 treeShaking
 1.在webpack.config.common.js中添加如下代码:
     optimization: {
@@ -308,6 +392,7 @@ treeShaking
         "src/sideEffects/*"
     ], 
 3.必须是esmodule即用import/export
+
 
 非离线环境下的pwa  
 pnpm i http-server -D
