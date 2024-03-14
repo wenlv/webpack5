@@ -124,7 +124,7 @@ module.exports = {
         //     manifest: path.resolve(__dirname, '../dll/mainfest.json'),
         // }),
         // new AddAssetHtmlWebpackPlugin({
-        //     filePath: path.resolve(__dirname, '../dll/jquery.js'),
+        //     filepath: path.resolve(__dirname, '../dll/jquery.js'),
         //     publicPath: './',
         // }),
     ],

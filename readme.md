@@ -504,13 +504,13 @@ shiming预置全局变量
         },
         output: {
             filename: "[name].js",
-            path: path.resolve(__dirname, 'dll'),
+            path: path.resolve(__dirname, '../dll'),
             library: "[name]_[hash]",
         },
         plugins: [
             new webpack.DllPlugin({
                 name: "[name]_[hash]",
-                path: path.resolve(__dirname, "dll/mainfest.json"),
+                path: path.resolve(__dirname, "../dll/mainfest.json"),
             }),
         ],
     }
@@ -530,7 +530,7 @@ shiming预置全局变量
     const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
     plugins: [
         new AddAssetHtmlWebpackPlugin({
-            filePath: path.resolve(__dirname, './dll/jquery.js'),
+            filepath: path.resolve(__dirname, '../dll/jquery.js'),
             publicPath: './',
         }),
     ],

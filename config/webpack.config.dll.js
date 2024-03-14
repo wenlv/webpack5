@@ -8,13 +8,13 @@ module.exports = {
     },
     output: {
         filename: "[name].js",
-        path: path.resolve(__dirname, 'dll'),
+        path: path.resolve(__dirname, '../dll'),
         library: "[name]_[hash]",
     },
     plugins: [
         new webpack.DllPlugin({
             name: "[name]_[hash]",
-            path: path.resolve(__dirname, "dll/mainfest.json"),
+            path: path.resolve(__dirname, "../dll/mainfest.json"),
         }),
     ],
 }
