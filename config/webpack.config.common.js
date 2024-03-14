@@ -43,10 +43,15 @@ module.exports = {
             type: 'umd',
         },
     },
+    // cache: {
+    //     type: "memory",
+    // },
 
     resolve: {
         alias: { "@": '/src' },
         extensions: ['.json', '.ts', '.js', '.vue'],
+        symlinks: false,
+        cacheWithContext: false,
     },
 
     externalsType: 'script',
