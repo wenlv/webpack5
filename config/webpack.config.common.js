@@ -127,6 +127,10 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                type: 'asset/resource',
+            },
+            {
                 test: /\.png$/,
                 type: 'asset/resource',
                 generator: {
@@ -166,10 +170,6 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                type: 'asset/resource',
-            },
-            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: [
@@ -179,7 +179,7 @@ module.exports = {
                             presets: [
                                 [
                                     '@babel/preset-env',
-                                    {
+                                    { // 配置按需引入的polyfill
                                         targets: ["> 1%", "last 2 versions"],
                                         // useBuiltIns: "usage",
                                         // corejs: 3,
@@ -191,7 +191,7 @@ module.exports = {
                             ],
                         },
                     },
-                    {
+                    { // worker pool)
                         loader: "thread-loader",
                         options: {
                             workers: 2,

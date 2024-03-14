@@ -2,7 +2,7 @@
   "name": "webpackh5-demo",
   "version": "1.0.0",
   "description": "设置npm淘宝镜像：npm config set registry https://registry.npm.taobao.org/ 设置npm官方镜像：npm config set registry https://registry.npmjs.org 查看npm镜像状态：npm config get registry",
-  "main": "index.js",
+  "main": "scripts/mylib.js",
   "sideEffects": [
     "*.css",
     "src/sideEffects/*"
@@ -14,7 +14,7 @@
     "build:dev": "webpack -c ./config/webpack.config.js --env development",
     "build:prod": "webpack -c ./config/webpack.config.js --env production",
     "prepare": "husky install",
-    "dll": "webpack -c ./config/webpack.dll.config.js"
+    "dll": "webpack -c ./config/webpack.config.dll.js"
   },
   "keywords": [],
   "author": "",
