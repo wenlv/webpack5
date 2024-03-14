@@ -274,7 +274,7 @@ pnpm i terser-webpack-plugin -D
 
 git 添加husky提交校验(在npm 官网输入husky找到husky文档)
 1.pnpm i husky -D
-2.npx husky init
+2.npx husky init   |  npx husky install
 3.在package.json文件的scripts中新增命令："prepare":"husky install"
 4.将.husky文件夹下新增pre-commit文件并输入 npx eslint ./src
 5.若pre-commit没有权限 需要执行 cd .husky 
