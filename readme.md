@@ -104,6 +104,21 @@ const HtmlWebpckPlugin = require('html-webpack-plugin');
 ==============================================================================================================
 ==============================================================================================================
 ==============================================================================================================
+css有关的plugin
+pnpm i mini-css-extract-plugin css-minimizer-webpack-plugin  -D
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+    plugins:[
+        new MiniCssExtractPlugin({
+            filename: 'styles/[contenthash].css',
+        }),
+    ],
+    optimization: {
+        minimizer: [
+            new CssMinizerWebpackPlugin(),
+        ],
+    },
+
 
 css有关loader
 pnpm i style-loader css-loader less-loader postcss-loader postcss-nested autoprefixer  -D
@@ -146,20 +161,7 @@ postcss.config.js文件内容如下:
         "last 2 versions"
     ]
 
-css有关的plugin
-pnpm i mini-css-extract-plugin css-minimizer-webpack-plugin  -D
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinizerWebpackPlugin = require('css-minimizer-webpack-plugin');
-    plugins:[
-        new MiniCssExtractPlugin({
-            filename: 'styles/[contenthash].css',
-        }),
-    ],
-    optimization: {
-        minimizer: [
-            new CssMinizerWebpackPlugin(),
-        ],
-    },
+
 
 
 ==============================================================================================================
@@ -320,6 +322,21 @@ entry: {
 //     },
 // },
 
+分包
+optimization: {
+    usedExports: true,
+    splitChunks: {
+        // chunks: 'all'
+        cacheGroups: {
+            vendor: {
+                test: /[\\/]node_modules[\\/]/,
+                name: 'vendors',
+                chunks: 'all',
+            },
+        },
+    },
+},
+
 ==============================================================================================================
 ==============================================================================================================
 ==============================================================================================================
@@ -406,20 +423,7 @@ module: {
 ==============================================================================================================
 ==============================================================================================================
 ==============================================================================================================
-分包
-optimization: {
-    usedExports: true,
-    splitChunks: {
-        // chunks: 'all'
-        cacheGroups: {
-            vendor: {
-                test: /[\\/]node_modules[\\/]/,
-                name: 'vendors',
-                chunks: 'all',
-            },
-        },
-    },
-},
+
 
 ==============================================================================================================
 ==============================================================================================================
