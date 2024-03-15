@@ -512,7 +512,7 @@ shiming预置全局变量
     module.exports = {
         mode: 'development',
         entry: {
-            jquery: ['jquery'],
+            vendors: ['jquery','lodash'],
         },
         output: {
             filename: "[name].js",
@@ -522,7 +522,7 @@ shiming预置全局变量
         plugins: [
             new webpack.DllPlugin({
                 name: "[name]_[hash]",
-                path: path.resolve(__dirname, "../dll/mainfest.json"),
+                path: path.resolve(__dirname, "../dll/[name]_mainfest.json"),
             }),
         ],
     }
@@ -534,7 +534,7 @@ shiming预置全局变量
 4.在webpack.config.common.js文件中新增如下代码：
     plugins: [
         new webpack.DllReferencePlugin({
-            manifest: path.resolve(__dirname, './dll/mainfest.json'),
+            manifest: path.resolve(__dirname, './dll/vendors_mainfest.json'),
         }),
     ],
 5.pnpm i add-asset-htmk-webpack-plugin -D  
@@ -542,7 +542,7 @@ shiming预置全局变量
     const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
     plugins: [
         new AddAssetHtmlWebpackPlugin({
-            filepath: path.resolve(__dirname, '../dll/jquery.js'),
+            filepath: path.resolve(__dirname, '../dll/vendors.dll.js'),
             publicPath: './',
         }),
     ],

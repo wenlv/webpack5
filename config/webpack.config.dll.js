@@ -4,17 +4,17 @@ const webpack = require('webpack');
 module.exports = {
     mode: 'development',
     entry: {
-        jquery: ['jquery'],
+        vendors: ['jquery', 'lodash'],
     },
     output: {
-        filename: "[name].js",
+        filename: "[name].dll.js",
         path: path.resolve(__dirname, '../dll'),
         library: "[name]_[hash]",
     },
     plugins: [
         new webpack.DllPlugin({
             name: "[name]_[hash]",
-            path: path.resolve(__dirname, "../dll/mainfest.json"),
+            path: path.resolve(__dirname, "../dll/[name]_mainfest.json"),
         }),
     ],
 }
